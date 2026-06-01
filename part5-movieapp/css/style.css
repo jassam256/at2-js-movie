@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ROOT VARIABLES */
+:root {
+  /* FONTS */
+  --mono: "Roboto Mono", monospace;
+  --sans: "Merriweather Sans", sans-serif;
+
+  /* COLOUR THEME */
+  --primary: lightblue;
+  --secondary1: lightgrey;
+  --secondary2: grey;
+  --accent: orange;
+
+  --confirm: green;
+  --change: blue;
+  --danger: red;
+}
+
+body {
+  font-family: var(--sans);
+}
+
+/* HEADER */
+header {
+  /* layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  /* styling */
+  font-family: var(--mono);
+  background-color: var(--primary);
+
+  border: 1px solid black;
+
+  /* spacing */
+  padding: 1rem 2rem;
+  margin: 1rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5rem;
+}
+
+/* section headers (search/sort, movie list) */
+.section-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.5rem;
+}
+
+.section-footer {
+  height: 2rem;
+}
+
+/* SEARCH & SORT SECTION */
+.search-sort-section {
+  background-color: var(--primary);
+  border-radius: 10px;
+
+  border: 1px solid black;
+}
+
+/* TODO: change these to grid for even, consistent spacing */
+.search-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: var(--secondary1);
+
+  padding: 0.5rem;
+}
+
+.sort-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: var(--secondary2);
+
+  padding: 0.5rem;
+}
+
+/* MOVIE LIST SECTION */
+.movie-list-section {
+  background-color: var(--primary);
+  border-radius: 10px;
+
+  border: 1px solid black;
+}
+
+/* movie list table*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: var(--accent);
+}
+
+/* ADD SECTION */
+.add-section {
+  background-color: var(--secondary1);
+  border: 1px solid black;
+
+  max-width: 420px;
+}
+
+.add-section .section-header {
+  background-color: var(--secondary2);
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 0.5rem;
+}
+
+.add-form-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  gap: 0.5rem;
+
+  padding: 0.5rem;
+}
