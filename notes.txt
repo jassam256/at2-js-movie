@@ -1,0 +1,31 @@
+Minimize 🗕 or _ or -
+
+Maximize 🗖
+
+Refresh ⟳
+
+
+Stars
+★
+☆
+
+
+TODO:
+
+search functions
+    searchByTitle
+    searchById
+
+sort functions
+    sortA2Z
+    sortZ2A
+    sortRating
+    sortId
+
+addEntry
+    addConfirm
+    addCancel
+
+editEntry
+
+deleteEntry
