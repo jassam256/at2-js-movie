@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admit One - Movie App</title>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <h1>Admit One</h1>
+    </header>
+
+    <main>
+      <!-- SEARCH & SORT SECTION -->
+      <section class="search-sort-section">
+        <!-- SECTION HEADER -->
+        <section class="section-header">
+          <h2>Search/Sort</h2>
+          <button type="button">min/max</button>
+        </section>
+        <!-- SEARCH SECTION -->
+        <section class="search-section">
+          <label for="search"><h3>Search</h3></label>
+          <input type="text" name="search" id="searchString" />
+        </section>
+        <!-- SORT SECTION -->
+        <section class="sort-section">
+          <h3>Sort</h3>
+          <button type="button">A - Z</button>
+          <button type="button">Z - A</button>
+          <button type="button">Rating</button>
+          <button type="button">By ID</button>
+        </section>
+        <!-- SECTION FOOTER -->
+
+        <div class="section-footer"></div>
+
+        <section class="movie-list-section">
+          <!-- SECTION HEADER -->
+          <section class="section-header">
+            <h2>Movie List</h2>
+          </section>
+          <!-- MOVIE LIST TABLE -->
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Rating</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="list"></tbody>
+          </table>
+          <!-- SECTION FOOTER -->
+          <div class="section-footer"></div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
