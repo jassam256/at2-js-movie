@@ -88,12 +88,23 @@
               <!-- MOVIES GO HERE -->
               <tr class="movie-row edit">
                 <td class="col-id">1</td>
-                <td class="col-title">High School Musical</td>
-                <td class="col-year">2006</td>
-                <td class="col-rating">★★★★☆</td>
+                <td class="col-title"><input type="text" /></td>
+                <td class="col-year"><input type="text" /></td>
+                <td class="col-rating">
+                  <select name="rating" class="edit-rating">
+                    <option value="0">☆☆☆☆☆</option>
+                    <option value="1">★☆☆☆☆</option>
+                    <option value="2">★★☆☆☆</option>
+                    <option value="3">★★★☆☆</option>
+                    <option value="4">★★★★☆</option>
+                    <option value="5">★★★★★</option>
+                  </select>
+                </td>
                 <td class="col-actions">
-                  <button type="button" class="btn btn-success">Edit</button>
-                  <button type="button" class="btn btn-danger">Delete</button>
+                  <div class="actions">
+                    <button type="button" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-danger">Cancel</button>
+                  </div>
                 </td>
               </tr>
               <tr class="movie-row">
@@ -102,7 +113,7 @@
                 <td class="col-year">2007</td>
                 <td class="col-rating">★★★★★</td>
                 <td class="col-actions">
-                  <button type="button" class="btn btn-success">Edit</button>
+                  <button type="button" class="btn btn-edit">Edit</button>
                   <button type="button" class="btn btn-danger">Delete</button>
                 </td>
               </tr>

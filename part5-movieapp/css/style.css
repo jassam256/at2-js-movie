@@ -96,6 +96,11 @@ body {
   }
 }
 
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .btn-secondary {
   background-color: var(--secondary);
 
@@ -252,7 +257,18 @@ th {
 tr.movie-row {
   background-color: var(--row1);
   border-bottom: 1px solid #cacaca;
-  transition: background-color var(--transition-medium);
+  transition: all var(--transition-medium);
+}
+
+tr.movie-row input {
+  transition: all var(--transition-medium);
+}
+
+tr.movie-row.edit td input {
+  width: 100%;
+  padding: var(--space-1);
+  border: 1px solid var(--blk);
+  border-radius: var(--radius-s);
 }
 
 tr.movie-row:nth-child(even) {
@@ -292,9 +308,25 @@ tr.movie-row td:nth-child(4) {
   font-family: monospace;
 }
 
+.edit-rating {
+  width: 100%;
+  padding: var(--space-1) 0;
+  border: 1px solid var(--blk);
+  border-radius: var(--radius-s);
+  background-color: var(--w);
+  font-family: var(--poppins);
+}
+
+.edit-rating:focus {
+  outline: 1px solid var(--blk);
+}
+
 /* actions column */
-tr.movie-row td:last-child {
+
+/* actions buttons container */
+.actions {
   display: flex;
+  align-items: center;
   gap: var(--space-2);
 }
 
