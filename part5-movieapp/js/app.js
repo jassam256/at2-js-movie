@@ -61,8 +61,29 @@ addBtn.addEventListener("click", () => {
   const year = document.getElementById("add-year").value.trim();
   const rating = Number(document.getElementById("add-rating").value);
 
+  // FORM VALIDATION - basic validation
   // Check that id & title are filled
   if (!id || !title) {
+    alert("ID and title are required");
+    return;
+  }
+
+  // Check that ID is a number greater than 0
+  if (isNaN(id) || id <= 0) {
+    alert("Please enter an ID greater than 0");
+    return;
+  }
+
+  // Check for duplicate ID
+  if (movielist.getMovieById(id)) {
+    alert(`Movie with ID ${id} already exists`);
+    return;
+  }
+
+  // Check that year is a number (or otherwise empty)
+  // TODO: could set a minimum valid year but still retain as optional field
+  if (year && isNaN(Number(year))) {
+    alert("Year must be a number");
     return;
   }
 
@@ -74,6 +95,7 @@ addBtn.addEventListener("click", () => {
   };
 
   movielist.addMovie(newMovie);
+  alert("Entry successfully added");
 
   clearAddForm();
 });
@@ -142,19 +164,15 @@ const searchInput = document.getElementById("search-string");
 
 // Call search method
 searchTitle.addEventListener("click", () => {
-  const searchValue = searchInput.value.trim();
-
-  const results = movielist.searchMovieByTitle(searchValue);
-
-  movielist.refresh(results);
+  movielist.searchMode = "title";
+  movielist.searchTerm = searchInput.value.trim();
+  movielist.refresh();
 });
 
 searchId.addEventListener("click", () => {
-  const searchValue = searchInput.value.trim();
-
-  const results = movielist.searchMovieById(searchValue);
-
-  movielist.refresh(results);
+  movielist.searchMode = "id";
+  movielist.searchTerm = searchInput.value.trim();
+  movielist.refresh();
 });
 
 // SORT FUNCTIONS
@@ -166,26 +184,80 @@ const sortYear = document.getElementById("sort-year");
 const sortId = document.getElementById("sort-id");
 
 sortA2Z.addEventListener("click", () => {
-  const sorted = movielist.sortA2Z(movielist.movieList);
-  movielist.refresh(sorted);
+  movielist.sortMode = "a2z";
+  movielist.refresh();
 });
 
 sortZ2A.addEventListener("click", () => {
-  const sorted = movielist.sortZ2A(movielist.movieList);
-  movielist.refresh(sorted);
+  movielist.sortMode = "z2a";
+  movielist.refresh();
 });
 
 sortRating.addEventListener("click", () => {
-  const sorted = movielist.sortRating(movielist.movieList);
-  movielist.refresh(sorted);
-});
-
-sortId.addEventListener("click", () => {
-  const sorted = movielist.sortId(movielist.movieList);
-  movielist.refresh(sorted);
+  movielist.sortMode = "rating";
+  movielist.refresh();
 });
 
 sortYear.addEventListener("click", () => {
-  const sorted = movielist.sortYear(movielist.movieList);
-  movielist.refresh(sorted);
+  movielist.sortMode = "year";
+  movielist.refresh();
+});
+
+sortId.addEventListener("click", () => {
+  movielist.sortMode = "id";
+  movielist.refresh();
+});
+
+// REFRESH BUTTON
+// sets search and sort mode to default
+const refreshBtn = document.getElementById("refresh-btn");
+
+refreshBtn.addEventListener("click", () => {
+  const confirmRefresh = confirm(
+    "Are you sure you want to reset the movie list?",
+  );
+  if (!confirmRefresh) {
+    return;
+  } else {
+    movielist.searchTerm = "";
+    movielist.searchMode = null;
+    movielist.sortMode = "id";
+
+    searchInput.value = "";
+
+    movielist.refresh();
+  }
+});
+
+// SECTION & FORM CONTROL
+// Toggle controls and add form
+
+// CONTROLS SECTION
+// controls - min-max button
+const toggleControls = document.getElementById("toggle-controls");
+
+// each section
+const searchSection = document.querySelector(".search-section");
+const sortSection = document.querySelector(".sort-section");
+const addSection = document.querySelector(".add-section");
+
+toggleControls.addEventListener("click", () => {
+  searchSection.classList.toggle("hide");
+  sortSection.classList.toggle("hide");
+  addSection.classList.toggle("hide");
+
+  // Change button symbol
+  if (toggleControls.textContent == "🗖") {
+    toggleControls.textContent = "_";
+  } else {
+    toggleControls.textContent = "🗖";
+  }
+});
+
+// ADD FORM
+const addEntry = document.getElementById("add-entry");
+const addForm = document.getElementsByClassName("add-form");
+
+addEntry.addEventListener("click", () => {
+  addForm[0].classList.toggle("hide");
 });

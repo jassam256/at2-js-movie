@@ -8,11 +8,14 @@
 
 /**
  * MovieList
- * This class has 4 properties and numerous methods
+ * This class has 6 properties and numerous methods
  * @class
  * @property {string} rootId - the id of the HTML element where the list is to be displayed
  * @property {Array} movieList - the array of movies
  * @property {number} editId - the id of the movie being edited
+ 
+ * @property {string} searchTerm - search string to search for
+ * @property {string} searchMode - either search via title or id
  * @property {string} sortMode - how to sort the movie list before displaying
  *
  * @property {function} refresh - this method removes the current displayed list elements and replaces them with updated list elements
@@ -23,6 +26,9 @@ class MovieList {
     this.rootId = rootId;
     this.movieList = movies;
     this.editId = null;
+
+    this.searchTerm = "";
+    this.searchMode = "title";
     this.sortMode = null;
 
     this.refresh();
@@ -249,26 +255,23 @@ class MovieList {
    * Remove the current displayed list elements and replace them with the updated list elements
    * @param {array} list - the movie list of MovieList class
    */
-  refresh(list = this.movieList) {
+  refresh() {
+
+
     // Get root id
     const rootId = this.getRoot();
 
-    // Get scroll position
-    const scrollY = window.scrollY;
-
     // Clear the existing rows
     rootId.replaceChildren();
+
+    // Get list depending on search / sort mode
+    const list = this.getViewList();
 
     // For each movie in the given list, call the renderRow method
     for (let i = 0; i < list.length; i++) {
       const row = this.renderRow(list[i]);
       rootId.appendChild(row);
     }
-
-    // Retain scroll position
-    window.requestAnimationFrame(() => {
-      window.scrollTo(0, scrollY);
-    });
   }
 
   /**
@@ -567,5 +570,63 @@ class MovieList {
     }
 
     return results;
+  }
+
+  getViewList() {
+    let list = [...this.movieList];
+
+    // 1. SEARCH TERM & SEARCH MODE
+    if (this.searchTerm) {
+      if (this.searchMode === "title") {
+        const term = this.searchTerm.toLowerCase();
+
+        const results = [];
+        for (let i = 0; i < list.length; i++) {
+          if (list[i].title.toLowerCase().includes(term)) {
+            results.push(list[i]);
+          }
+        }
+        list = results;
+      }
+
+      if (this.searchMode === "id") {
+        const results = [];
+        const id = Number(this.searchTerm);
+
+        for (let i = 0; i < list.length; i++) {
+          if (list[i].id === id) {
+            results.push(list[i]);
+          }
+        }
+        list = results;
+      }
+    }
+
+    // 2. SORT MODE - switch statements for each sort method
+    // TODO: can potentially not use id as a search mode and have it default
+    switch (this.sortMode) {
+      case "a2z":
+        list = this.sortA2Z(list);
+        break;
+
+      case "z2a":
+        list = this.sortZ2A(list);
+        break;
+
+      case "rating":
+        list = this.sortRating(list);
+        break;
+
+      case "year":
+        list = this.sortYear(list);
+        break;
+
+      case "id":
+      default:
+        list = this.sortId(list);
+        break;
+    }
+
+    return list;
   }
 }
