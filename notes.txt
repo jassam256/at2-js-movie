@@ -29,3 +29,48 @@ addEntry
 editEntry
 
 deleteEntry
+
+
+
+.movie-row
+:hover
+.edit
+.focus
+:disabled
+
+
+// select rating 
+
+<select name="rating" class="rating-select">
+    <option value="0">☆☆☆☆☆</option>
+    <option value="0">★☆☆☆☆</option>
+    <option value="0">★★☆☆☆</option>
+    <option value="0">★★★☆☆</option>
+    <option value="0">★★★★☆</option>
+    <option value="0">★★★★★</option>
+</select>
+
+FOR JAVASCRIPT LATER
+select.value = movie.rating
+
+EDIT MODE
+
+              <tr class="movie-row edit">
+                <td class="col-id">1</td>
+                <td class="col-title"><input type="text" /></td>
+                <td class="col-year"><input type="text" /></td>
+                <td class="col-rating">
+                  <select name="rating" class="edit-rating">
+                    <option value="0">☆☆☆☆☆</option>
+                    <option value="1">★☆☆☆☆</option>
+                    <option value="2">★★☆☆☆</option>
+                    <option value="3">★★★☆☆</option>
+                    <option value="4">★★★★☆</option>
+                    <option value="5">★★★★★</option>
+                  </select>
+                </td>
+                <td class="col-actions">
+                  <button type="button" class="btn btn-success">Save</button>
+                  <button type="button" class="btn btn-danger">Cancel</button>
+                </td>
+              </tr>

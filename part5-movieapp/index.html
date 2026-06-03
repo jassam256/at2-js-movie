@@ -8,61 +8,113 @@
   </head>
   <body>
     <header>
-      <h1>Admit One</h1>
+      <h1 class="t-upper">Admit One</h1>
     </header>
 
     <main>
       <!-- CONTROLS SECTION - search, sort, add -->
       <div class="controls-section">
+        <div class="controls-header flex">
+          <h2 class="t-upper">Controls</h2>
+          <button type="button" class="btn btn-primary flex center">_</button>
+        </div>
         <section class="search-section">
-          <label for="search"><h2>Search</h2></label>
+          <label for="search-string"><h3>Search</h3></label>
           <input type="text" name="search" id="search-string" />
-          <button type="button">By Title</button>
-          <button type="button">By ID</button>
+          <button type="button" id="search-title" class="btn btn-secondary">
+            By Title
+          </button>
+          <button type="button" id="search-id" class="btn btn-secondary">
+            By ID
+          </button>
         </section>
         <section class="sort-section">
-          <h2>Sort</h2>
-          <button type="button">A - Z</button>
-          <button type="button">Z - A</button>
-          <button type="button">By Rating</button>
-          <button type="button">By ID</button>
+          <h3>Sort</h3>
+          <button type="button" id="sort-a2z" class="btn btn-secondary">
+            A - Z
+          </button>
+          <button type="button" id="sort-z2a" class="btn btn-secondary">
+            Z - A
+          </button>
+          <button type="button" id="sort-rating" class="btn btn-secondary">
+            Rating
+          </button>
+          <button type="button" id="sort-year" class="btn btn-secondary">
+            Year
+          </button>
+          <button type="button" id="sort-id" class="btn btn-secondary">
+            ID
+          </button>
         </section>
         <section class="add-section">
-          <h2>Add</h2>
-          <button type="button">Add Entry</button>
+          <div class="add-header">
+            <h3>Add</h3>
+            <button type="button" class="btn btn-success">Add Entry</button>
+          </div>
           <form class="add-form hide">
-            <label for="add-id">ID: </label>
-            <input type="text" name="id" id="add-id" />
-            <label for="add-title">Title: </label>
-            <input type="text" name="title" id="add-title" />
-            <label for="add-year">Year: </label>
-            <input type="text" name="year" id="add-year" />
-            <label for="add-rating">Rating: </label>
-            <input type="text" name="rating" id="add-rating" />
+            <div class="form-group">
+              <label for="add-id">ID: </label>
+              <input type="text" name="id" id="add-id" />
+            </div>
+            <div class="form-group">
+              <label for="add-title">Title: </label>
+              <input type="text" name="title" id="add-title" />
+            </div>
+            <div class="form-group">
+              <label for="add-year">Year: </label>
+              <input type="text" name="year" id="add-year" />
+            </div>
+            <div class="form-group">
+              <label for="add-rating">Rating: </label>
+              <select name="rating" id="add-rating">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
             <div class="add-form-btns">
-              <button type="button">Save</button>
-              <button type="button">Cancel</button>
+              <button type="button" id="add-save" class="btn btn-success">
+                Save
+              </button>
+              <button type="button" id="add-cancel" class="btn btn-danger">
+                Cancel
+              </button>
             </div>
           </form>
         </section>
       </div>
 
       <section class="list-section">
-        <h2>Movie List</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Year</th>
-              <th>Rating</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="list">
-            <!-- MOVIES GO HERE -->
-          </tbody>
-        </table>
+        <div class="list-header flex">
+          <h2 class="t-upper">Movie List</h2>
+          <button type="button" class="btn btn-primary flex center">⟳</button>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <colgroup>
+              <col style="width: 42px" />
+              <col style="width: auto" />
+              <col style="width: 80px" />
+              <col style="width: 100px" />
+              <col style="width: 140px" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th class="col-id">ID</th>
+                <th class="col-title">Title</th>
+                <th class="col-year">Year</th>
+                <th class="col-rating">Rating</th>
+                <th class="col-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="list">
+              <!-- MOVIES GO HERE -->
+            </tbody>
+          </table>
+        </div>
       </section>
     </main>
 
