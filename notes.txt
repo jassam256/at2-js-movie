@@ -55,6 +55,8 @@ select.value = movie.rating
 
 EDIT MODE
 
+Either use the stars or just numbers
+
               <tr class="movie-row edit">
                 <td class="col-id">1</td>
                 <td class="col-title"><input type="text" /></td>

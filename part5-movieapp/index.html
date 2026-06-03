@@ -8,7 +8,11 @@
   </head>
   <body>
     <header>
-      <h1 class="t-upper">Admit One</h1>
+      <h1 class="hide">Admit One</h1>
+      <img
+        src="./img/admit_one.svg"
+        alt="A vector logo of a ticket stub with the text 'Admit One' in block letters"
+      />
     </header>
 
     <main>
@@ -16,7 +20,13 @@
       <div class="controls-section">
         <div class="controls-header flex">
           <h2 class="t-upper">Controls</h2>
-          <button type="button" class="btn btn-primary flex center">_</button>
+          <button
+            type="button"
+            id="toggle-controls"
+            class="btn btn-primary flex center"
+          >
+            _
+          </button>
         </div>
         <section class="search-section">
           <label for="search-string"><h3>Search</h3></label>
@@ -36,11 +46,11 @@
           <button type="button" id="sort-z2a" class="btn btn-secondary">
             Z - A
           </button>
-          <button type="button" id="sort-rating" class="btn btn-secondary">
-            Rating
-          </button>
           <button type="button" id="sort-year" class="btn btn-secondary">
             Year
+          </button>
+          <button type="button" id="sort-rating" class="btn btn-secondary">
+            Rating
           </button>
           <button type="button" id="sort-id" class="btn btn-secondary">
             ID
@@ -49,7 +59,9 @@
         <section class="add-section">
           <div class="add-header">
             <h3>Add</h3>
-            <button type="button" class="btn btn-success">Add Entry</button>
+            <button type="button" id="add-entry" class="btn btn-success">
+              Add Entry
+            </button>
           </div>
           <form class="add-form hide">
             <div class="form-group">
@@ -90,7 +102,13 @@
       <section class="list-section">
         <div class="list-header flex">
           <h2 class="t-upper">Movie List</h2>
-          <button type="button" class="btn btn-primary flex center">⟳</button>
+          <button
+            type="button"
+            id="refresh-btn"
+            class="btn btn-primary flex center"
+          >
+            ⟳
+          </button>
         </div>
         <div class="table-wrapper">
           <table>
@@ -117,6 +135,11 @@
         </div>
       </section>
     </main>
+
+    <footer>
+      <p>© Jason Sam 2026</p>
+      <p>Holmesglen Institute</p>
+    </footer>
 
     <script src="./js/movie.js"></script>
     <script src="./js/app.js"></script>
