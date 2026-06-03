@@ -19,24 +19,39 @@
           <button type="button" class="btn btn-primary flex center">_</button>
         </div>
         <section class="search-section">
-          <label for="search"><h3>Search</h3></label>
+          <label for="search-string"><h3>Search</h3></label>
           <input type="text" name="search" id="search-string" />
-          <button type="button" class="btn btn-secondary">By Title</button>
-          <button type="button" class="btn btn-secondary">By ID</button>
+          <button type="button" id="search-title" class="btn btn-secondary">
+            By Title
+          </button>
+          <button type="button" id="search-id" class="btn btn-secondary">
+            By ID
+          </button>
         </section>
         <section class="sort-section">
           <h3>Sort</h3>
-          <button type="button" class="btn btn-secondary">A - Z</button>
-          <button type="button" class="btn btn-secondary">Z - A</button>
-          <button type="button" class="btn btn-secondary">Rating</button>
-          <button type="button" class="btn btn-secondary">ID</button>
+          <button type="button" id="sort-a2z" class="btn btn-secondary">
+            A - Z
+          </button>
+          <button type="button" id="sort-z2a" class="btn btn-secondary">
+            Z - A
+          </button>
+          <button type="button" id="sort-rating" class="btn btn-secondary">
+            Rating
+          </button>
+          <button type="button" id="sort-year" class="btn btn-secondary">
+            Year
+          </button>
+          <button type="button" id="sort-id" class="btn btn-secondary">
+            ID
+          </button>
         </section>
         <section class="add-section">
           <div class="add-header">
             <h3>Add</h3>
             <button type="button" class="btn btn-success">Add Entry</button>
           </div>
-          <form class="add-form">
+          <form class="add-form hide">
             <div class="form-group">
               <label for="add-id">ID: </label>
               <input type="text" name="id" id="add-id" />
@@ -51,11 +66,22 @@
             </div>
             <div class="form-group">
               <label for="add-rating">Rating: </label>
-              <input type="text" name="rating" id="add-rating" />
+              <select name="rating" id="add-rating">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
             </div>
             <div class="add-form-btns">
-              <button type="button" class="btn btn-success">Save</button>
-              <button type="button" class="btn btn-danger">Cancel</button>
+              <button type="button" id="add-save" class="btn btn-success">
+                Save
+              </button>
+              <button type="button" id="add-cancel" class="btn btn-danger">
+                Cancel
+              </button>
             </div>
           </form>
         </section>
@@ -86,37 +112,6 @@
             </thead>
             <tbody id="list">
               <!-- MOVIES GO HERE -->
-              <tr class="movie-row edit">
-                <td class="col-id">1</td>
-                <td class="col-title"><input type="text" /></td>
-                <td class="col-year"><input type="text" /></td>
-                <td class="col-rating">
-                  <select name="rating" class="edit-rating">
-                    <option value="0">☆☆☆☆☆</option>
-                    <option value="1">★☆☆☆☆</option>
-                    <option value="2">★★☆☆☆</option>
-                    <option value="3">★★★☆☆</option>
-                    <option value="4">★★★★☆</option>
-                    <option value="5">★★★★★</option>
-                  </select>
-                </td>
-                <td class="col-actions">
-                  <div class="actions">
-                    <button type="button" class="btn btn-success">Save</button>
-                    <button type="button" class="btn btn-danger">Cancel</button>
-                  </div>
-                </td>
-              </tr>
-              <tr class="movie-row">
-                <td class="col-id">2</td>
-                <td class="col-title">High School Musical 2</td>
-                <td class="col-year">2007</td>
-                <td class="col-rating">★★★★★</td>
-                <td class="col-actions">
-                  <button type="button" class="btn btn-edit">Edit</button>
-                  <button type="button" class="btn btn-danger">Delete</button>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
