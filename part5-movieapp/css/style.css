@@ -1,0 +1,396 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ROOT VARIABLES */
+:root {
+  /* COLOR THEME */
+  --primary: #4da3ff;
+  --secondary: #ffb36b;
+  --secondary-hover: #ff9a3d;
+
+  --success: #3ccf91;
+  --success-hover: #2fb87f;
+  --edit: #6ec1ff;
+  --edit-hover: #4fa8f5;
+  --danger: #ff5c5c;
+  --danger-hover: #e64545;
+
+  --row1: #fefefe;
+  --row2: #eceff3;
+
+  --blk: #1a1a1a;
+  --w: #ffffff;
+
+  /* FONT */
+  --poppins: "Poppins", Arial, sans-serif;
+
+  --font-s: 0.8rem;
+  --font-m: 1rem;
+  --font-l: 1.5rem;
+  --font-xl: 2rem;
+
+  /* SPACE */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* BORDER RADIUS */
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 12px;
+
+  /* SHADOW */
+  --shadow-s: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-m: 0 4px 10px rgba(0, 0, 0, 0.12);
+  --shadow-l: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+  /* TRANSITION */
+  --transition-fast: 150ms ease;
+  --transition-medium: 250ms ease;
+}
+
+body {
+  font-family: var(--poppins);
+
+  max-width: 1080px;
+  margin: auto;
+}
+
+/* COMPONENT STYLING */
+/* buttons */
+.btn {
+  padding: var(--space-2) var(--space-4);
+  border: none;
+  border-radius: var(--radius-s);
+  transition: all var(--transition-fast);
+
+  white-space: nowrap;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-1px);
+  }
+}
+
+/* basic animation on click */
+.btn:active {
+  transform: scale(0.9);
+}
+
+.btn-primary {
+  width: 32px;
+  height: 32px;
+
+  background-color: var(--row1);
+
+  &:hover {
+    background-color: var(--row2);
+  }
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+
+  &:hover {
+    background-color: var(--secondary-hover);
+  }
+}
+
+.btn-success {
+  background: var(--success);
+  padding: var(--space-1) var(--space-2);
+
+  &:hover {
+    background-color: var(--success-hover);
+  }
+}
+
+.btn-edit {
+  background-color: var(--edit);
+  padding: var(--space-1) var(--space-2);
+
+  &:hover {
+    background-color: var(--edit-hover);
+  }
+}
+
+.btn-danger {
+  background-color: var(--danger);
+  padding: var(--space-1) var(--space-2);
+
+  &:hover {
+    background-color: var(--danger-hover);
+  }
+}
+
+/* HEADING STYLING */
+h1 {
+  font-size: var(--font-xl);
+  text-align: center;
+}
+
+h2 {
+  font-size: var(--font-l);
+}
+
+h3 {
+  font-size: var(--font-m);
+}
+
+/* SECTION STYLING */
+.controls-header,
+.list-header {
+  justify-content: space-between;
+  padding: var(--space-2);
+
+  background-color: var(--primary);
+}
+
+.search-section,
+.sort-section,
+.add-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--row1);
+}
+
+.search-section,
+.sort-section {
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.search-section h3,
+.sort-section h3,
+.add-section h3 {
+  /* flex: 0 0 100%; */
+  min-width: 70px;
+  margin: 0;
+  font-size: var(--font-m);
+}
+
+#search-string {
+  padding: var(--space-2);
+  border-radius: var(--radius-s);
+  border: 1px solid var(--blk);
+  min-width: 200px;
+  flex: 1;
+}
+
+.controls-section,
+.list-section {
+  margin-top: var(--space-6);
+  box-shadow: var(--shadow-l);
+}
+
+/* ADD FORM SECTION */
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--row2);
+  box-shadow: var(--shadow-s);
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 140px;
+}
+
+.add-form input {
+  padding: var(--space-2);
+  border-radius: var(--radius-s);
+  border: 1px solid var(--blk);
+  transition: var(--transition-fast);
+}
+
+.add-form-btns {
+  display: flex;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+
+/* LIST SECTION */
+/* layout and sizing handled by colgroup in DOM */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  min-width: 600px;
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background-color: var(--w);
+  box-shadow: var(--shadow-s);
+  overflow: hidden;
+}
+
+thead {
+  background-color: var(--secondary);
+}
+
+th {
+  padding: var(--space-3);
+  text-align: left;
+  font-weight: bold;
+}
+
+/* zebra row effect */
+tr.movie-row {
+  background-color: var(--row1);
+  border-bottom: 1px solid #cacaca;
+  transition: background-color var(--transition-medium);
+}
+
+tr.movie-row:nth-child(even) {
+  background-color: var(--row2);
+}
+
+tr.movie-row:hover {
+  background: rgba(77, 163, 255, 0.08);
+}
+
+tr.movie-row.edit {
+  background: rgba(82, 161, 221, 0.15);
+  border-top: 1px solid var(--blk);
+  border-bottom: 1px solid var(--blk);
+}
+
+/* prevent :hover from overwriting .edit */
+tr.movie-row.edit:hover {
+  background: rgba(82, 161, 221, 0.15);
+}
+
+/* cell styling */
+td {
+  padding: var(--space-3);
+  vertical-align: middle;
+}
+
+/* title column */
+tr.movie-row td:nth-child(2) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* rating column */
+tr.movie-row td:nth-child(4) {
+  font-family: monospace;
+}
+
+/* actions column */
+tr.movie-row td:last-child {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* UTILITY CLASSES */
+/* layout */
+.flex {
+  display: flex;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.gap-s {
+  gap: var(--space-2);
+}
+
+.gap-m {
+  gap: var(--space-4);
+}
+
+/* text */
+.t-upper {
+  text-transform: uppercase;
+}
+
+/* margin */
+.mt-s {
+  margin-top: var(--space-2);
+}
+.mt-m {
+  margin-top: var(--space-4);
+}
+
+.mb-s {
+  margin-bottom: var(--space-2);
+}
+.mb-m {
+  margin-bottom: var(--space-4);
+}
+
+/* visibility */
+.hidden {
+  display: none;
+}
+
+.active {
+  outline: 2px solid var(--primary);
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 600px) {
+  /* sections */
+  .search-section,
+  .sort-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #search-string {
+    width: 100%;
+  }
+
+  .search-section .btn,
+  .sort-section .btn,
+  .add-section .btn {
+    width: 100%;
+  }
+
+  /* add form */
+  .add-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .add-form-btns {
+    margin-left: 0;
+    justify-content: space-between;
+  }
+
+  .add-form button {
+    width: 100%;
+  }
+
+  table {
+    font-size: var(--font-sm);
+  }
+
+  td,
+  th {
+    padding: var(--space-2);
+  }
+}
