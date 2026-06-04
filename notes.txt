@@ -83,5 +83,5 @@ BUGS
 
 - number; anything about 53 will overflow
 
-- edit year - can put int a word
+- edit year - can put in a word
 - edit year - will overflow
