@@ -2,8 +2,7 @@
  * @file movie.js
  * @description this file holds the class definition for our MovieList
  * @author Jason Sam
- * @version 1.0.0
- *
+ * @version 1.0.1
  */
 
 /**
@@ -34,9 +33,32 @@ class MovieList {
     this.refresh();
   }
 
+  // getRoot
   // returns the root id of the MovieList class
   getRoot() {
     return document.getElementById(this.rootId);
+  }
+
+  /**
+   * replaceRow
+   * @param {id} - id of the row to replace
+   */
+  replaceRow(id) {
+    const root = this.getRoot();
+
+    const movie = this.getMovieById(id);
+    if (!movie) {
+      return;
+    }
+
+    const oldRow = root.querySelector(`tr[data-id="${id}"]`);
+    if (!oldRow) {
+      return;
+    }
+
+    const newRow = this.renderRow(movie);
+
+    root.replaceChild(newRow, oldRow);
   }
 
   /**
@@ -44,7 +66,7 @@ class MovieList {
    * renders a single line of the movie list
    * generates the required elements to display the movie item
    * @param {object} movie - the movie to be rendered
-   * @return row - returns the row elements for the movie
+   * @returns row - returns the row elements for the movie
    */
   renderRow(movie) {
     if (this.editId === movie.id) {
@@ -60,7 +82,7 @@ class MovieList {
    * displays Title, Year and Rating
    * changes Action buttons to Edit and Delete
    * @param {object} movie - the movie to render
-   * @return row - the row elements to render
+   * @returns row - the row elements to render
    */
   renderRowView(movie) {
     // Create row element with class movie-row
@@ -124,7 +146,7 @@ class MovieList {
    * utilises inputs and select box
    * changes Action buttons to Save and Cancel
    * @param {object} movie - the movie to render
-   * @return row - the row elements to render
+   * @returns row - the row elements to render
    */
 
   renderRowEdit(movie) {
@@ -191,7 +213,7 @@ class MovieList {
     });
 
     cancelBtn.addEventListener("click", () => {
-      this.cancelEdit();
+      this.cancelEdit(movie.id);
     });
 
     // Append corresponding items together
@@ -218,8 +240,8 @@ class MovieList {
     }
 
     // Locate row with matching data-id
-    const root = this.getRoot();
-    const row = root.querySelector(`tr[data-id="${id}"]`);
+    const rootId = this.getRoot();
+    const row = rootId.querySelector(`tr[data-id="${id}"]`);
     if (!row) {
       return;
     }
@@ -261,17 +283,18 @@ class MovieList {
     // Reset edit state to null
     this.editId = null;
 
-    this.refresh();
+    this.replaceRow(id);
   }
 
   /**
    * cancelEdit
    * cancels the current edited field - reverts it to the previous properties
    */
-  cancelEdit() {
+  cancelEdit(id) {
     this.editId = null;
 
-    this.refresh();
+    // Only replace the row that was being edited
+    this.replaceRow(id);
   }
 
   /**
@@ -280,6 +303,8 @@ class MovieList {
    * @param {array} list - the movie list of MovieList class
    */
   refresh() {
+    const scrollY = window.scrollY;
+
     // Get root id
     const rootId = this.getRoot();
 
@@ -301,6 +326,12 @@ class MovieList {
       row.appendChild(cell);
       rootId.appendChild(row);
 
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          window.scrollTo(0, scrollY);
+        });
+      });
+
       return;
     }
 
@@ -317,28 +348,29 @@ class MovieList {
    * @param {number} id
    */
   startEditMode(id) {
-    // Switch row being edited
-    if (this.editId !== null) {
-      this.cancelEdit();
+    // If same row, return
+    if (this.editId === id) {
+      return;
     }
 
-    // Find movie id
-    const movie = this.getMovieById(id);
-    if (!movie) {
-      return;
+    // Switch row being edited
+    if (this.editId !== null) {
+      const prevEditId = this.editId;
+      this.editId = null;
+
+      this.replaceRow(prevEditId);
     }
 
     // Assign id to edit id
     this.editId = id;
-
-    this.refresh();
+    this.replaceRow(id);
   }
 
   /**
    * printRating
    * Generates visual stars according to the rating
    * @param {number} rating - number of filled stars to print
-   * @return {string} stars - returns the string containing the resulting stars
+   * @returns {string} stars - returns the string containing the resulting stars
    */
   printRating(rating) {
     const max = 5;
@@ -360,7 +392,7 @@ class MovieList {
    * Gets the movie with the corresponding id
    * Returns null if no movie found
    * @param {number} id
-   * @return {object} movie
+   * @returns {object} movie
    */
   getMovieById(id) {
     // Check if matching id is found
@@ -379,7 +411,7 @@ class MovieList {
    * Returns the index position of the movie within the movieList array
    * Assumes that ids are unique
    * @param {number} id - id to search for
-   * @return {number} index - index of the movie in the array. Returns -1 if not found
+   * @returns {number} index - index of the movie in the array. Returns -1 if not found
    */
   getIndexById(id) {
     for (let i = 0; i < this.movieList.length; i++) {
@@ -493,7 +525,7 @@ class MovieList {
    * sortA2Z
    * Bubble Sort - sorts list alphabetically
    * @param {array} list - list of movies to sort
-   * @return {array} results - sorted list of movies
+   * @returns {array} results - sorted list of movies
    */
   sortA2Z(list) {
     const results = [];
@@ -521,7 +553,7 @@ class MovieList {
    * sortZ2A
    * Calls the sortA2Z function and reverses the list
    * @param {array} list - list of movies to sort
-   * @return {array} results - sorted list of movies
+   * @returns {array} results - sorted list of movies
    */
   sortZ2A(list) {
     const results = this.sortA2Z(list);
@@ -532,7 +564,7 @@ class MovieList {
    * sortRating
    * Sort list by rating
    * @param {array} list - list of movies to sort
-   * @return {array} results - list of movies sorted by rating
+   * @returns {array} results - list of movies sorted by rating
    */
   sortRating(list) {
     const results = [];
@@ -559,7 +591,7 @@ class MovieList {
    * sortYear
    * Sort list by release year
    * @param {array} list - list of movies to sort
-   * @return {array} results - list of movies sorted by release year
+   * @returns {array} results - list of movies sorted by release year
    */
   sortYear(list) {
     const results = [];
@@ -586,7 +618,7 @@ class MovieList {
    * sortId
    * Sort list by id
    * @param {array} list - list of movies to sort
-   * @return {array} results - list of movies sorted by id
+   * @returns {array} results - list of movies sorted by id
    */
   sortId(list) {
     const results = [];
