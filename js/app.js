@@ -47,8 +47,6 @@ let initialMovies = [
 let movielist = new MovieList("list", initialMovies);
 
 // FUNCTIONS
-// TODO:
-// check for duplicate ID
 
 // ADD MOVIE FUNCTIONS
 // add button
@@ -68,9 +66,9 @@ addBtn.addEventListener("click", () => {
     return;
   }
 
-  // Check that ID is a number greater than 0
-  if (isNaN(id) || id <= 0) {
-    alert("Please enter an ID greater than 0");
+  // Check that ID is a number between 1 and 9999
+  if (isNaN(id) || id <= 0 || id > 9999) {
+    alert("ID must be between 1 and 9999");
     return;
   }
 
@@ -81,7 +79,6 @@ addBtn.addEventListener("click", () => {
   }
 
   // Check that year is a number (or otherwise empty)
-  // TODO: could set a minimum valid year but still retain as optional field
   if (year && isNaN(Number(year))) {
     alert("Year must be a number");
     return;
