@@ -229,6 +229,30 @@ class MovieList {
     const year = row.querySelector(".edit-year").value;
     const rating = Number(row.querySelector(".edit-rating").value);
 
+    // Validation
+    if (!title) {
+      alert("Movie title cannot be empty.");
+      return;
+    }
+
+    // Year must be numeric if provided
+    if (year && isNaN(Number(year))) {
+      alert("Year must be a number.");
+      return;
+    }
+
+    // Year must be no more than 4 characters
+    if (year.length > 4) {
+      alert(" Year must be no more than 4 characters.");
+      return;
+    }
+
+    // Rating must be between 0 and 5
+    if (rating < 0 || rating > 5) {
+      alert("Rating must be between 0 and 5.");
+      return;
+    }
+
     // Update the movie
     movie.title = title;
     movie.year = year;
@@ -256,8 +280,6 @@ class MovieList {
    * @param {array} list - the movie list of MovieList class
    */
   refresh() {
-
-
     // Get root id
     const rootId = this.getRoot();
 
@@ -266,6 +288,21 @@ class MovieList {
 
     // Get list depending on search / sort mode
     const list = this.getViewList();
+
+    // If no results found
+    if (list.length === 0) {
+      const row = document.createElement("tr");
+
+      const cell = document.createElement("td");
+      cell.colSpan = 5;
+      cell.classList.add("no-results");
+      cell.textContent = "No movies found.";
+
+      row.appendChild(cell);
+      rootId.appendChild(row);
+
+      return;
+    }
 
     // For each movie in the given list, call the renderRow method
     for (let i = 0; i < list.length; i++) {

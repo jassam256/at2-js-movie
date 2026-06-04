@@ -76,3 +76,12 @@ Either use the stars or just numbers
                   <button type="button" class="btn btn-danger">Cancel</button>
                 </td>
               </tr>
+
+
+BUGS
+- edit button - scrolls to top of page on click
+
+- number; anything about 53 will overflow
+
+- edit year - can put int a word
+- edit year - will overflow
